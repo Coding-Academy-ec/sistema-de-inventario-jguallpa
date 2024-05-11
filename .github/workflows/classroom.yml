@@ -1,0 +1,28 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Test Sistema Inventario
+      id: test-sistema-inventario
+      uses: classroom-resources/autograding-python-grader@v1
+      with:
+        timeout: 10
+        max-score: 100
+        setup-command: python -m pytest test_inventario.py
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TEST-SISTEMA-INVENTARIO_RESULTS: "${{steps.test-sistema-inventario.outputs.result}}"
+      with:
+        runners: test-sistema-inventario
