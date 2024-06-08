@@ -24,29 +24,45 @@ Algunas de las funcionalidades que implementaremos incluyen:
 A medida que avancemos en el tutorial, también aprenderás buenas prácticas de programación, como la modularidad, la reutilización de código y la implementación de pruebas unitarias para garantizar la calidad y robustez de tu sistema de gestión de inventarios.
 </div>
 
-<div align=center>
-¡Prepárate para sumergirte en el emocionante mundo de la programación y desarrollar tu propio Sistema de Gestión de Inventarios con Python!
-</div>
 
-## Paso 1: Diseño del Modelo de Datos
+## Paso 1: Diseño del Modelo de Datos en WINDOWS
 
-1. Abre tu editor de texto o IDE favorito y crea un archivo llamado **inventario.sql**.
+1. Para instalar sqlite3 en Windows necesitas, en primer lugar, dirigirte al sitio web https://www.sqlite.org/download.html ahí te dirigirás a la sección Precompiled Binaries for Windows, en la que encontrarás los binarios para Windows, de ahí tienes que descargar los archivos:
+
+    sqlite-tools
+    sqlite-dll
+
+Descargar sqlite-tools del sitio web https://www.sqlite.org/download.html 
+    sqldiff.exe
+    sqlite3.exe
+    sqite3_analyzer.exe
+
+
+
+2. Asegúrate de seleccionar los archivos de descarga adecuados, ya que para ambos existen versiones de 32 bits (x86) y 64 bits (x64).
+
+3. Una vez que descargues los archivos y los descomprimas, ya que originalmente vienen como un .zip, tienes que moverlos a la carpeta (c:\sqlite3) para agregarlos 
+
+4. Una vez realizado creamos una variable de entorno en el sistema que apunte a ese directorio.
+
+
+5. Abre el terminal o powershell crear base de datos > sqlite3 inventario.db
+
+6. dentro de sqlite digitar. .open inventario.db
 
 2. Define la estructura de la **base de datos SQLite**. Agrega el siguiente código:
 
-```sql
-    -- Crear la tabla 'productos' para almacenar la información de los productos
+ -- Crear la tabla 'productos' para almacenar la información de los productos
     CREATE TABLE productos (
         id INTEGER PRIMARY KEY,
         nombre TEXT NOT NULL,
         precio REAL NOT NULL,
         existencias INTEGER NOT NULL
     );
-```
+
 Este código crea una tabla llamada productos con los campos id, nombre, precio y existencias.
 
 
-Se recomienda instalar el Plugin SQLite Viewer en Visual Studio Code para poder visualizar la base de datos SQLite.
 
 ## Paso 2: Desarrollo de la Lógica del Negocio
 
@@ -163,16 +179,8 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-## Paso 4: Integración con la Base de Datos SQLite
 
-Asegúrate de tener instalado SQLite en tu sistema. Puedes descargarlo desde SQLite Download Page.
-
-Ejecuta el archivo inventario.sql para crear la base de datos y la tabla productos.
-
-```bash
-sqlite3 inventario.db < inventario.sql
-```
-## Paso 5: Prueba del Sistema
+## Paso 4: Prueba del Sistema
 
 Utiliza la interfaz de línea de comandos para probar el sistema. A continuación, algunos ejemplos de comandos:
 
@@ -224,13 +232,3 @@ __pycache__/
 ```
 
 Crea un archivo **Readme.md** que proporcione una descripción del proyecto y una guía para su configuración e instalación.
-
-## Paso 6: Agregar archivos al repositorio
-
-Agrega los archivos al repositorio Git:
-
-```bash
-git add requirements.txt .gitignore Readme.md
-git commit -m "Actualizado Readme.md, agregado requirements.txt y .gitignore"
-git push
-```
